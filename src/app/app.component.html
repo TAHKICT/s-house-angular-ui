@@ -19,12 +19,27 @@
     ></app-menu>
   </ul>
 
+  <form action="#">
+    <app-nodes
+      *ngFor="let node of nodes"
+      [node]="node"
+    >
+
+    </app-nodes>
+  </form>
+
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <app-user
-    *ngFor="let u of users"
-    [user]="u"
-  ></app-user>
+
+  <!-- Dropdown Trigger -->
+  <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+
+  <ul id='dropdown1' class='dropdown-content'>
+    <app-menu-sorting
+      *ngFor="let sortingType of menuSortingTypes"
+      [sortingType]="sortingType"
+    ></app-menu-sorting>
+  </ul>
 </div>
 

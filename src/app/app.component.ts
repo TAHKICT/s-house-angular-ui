@@ -1,23 +1,37 @@
 import { Component } from '@angular/core';
 import {MenuService} from './menu/menu.service';
+import {NodesService} from './nodes/nodes.service';
+import {MenuSortingService} from './menu/menu.sorting.service';
+import * as $ from 'jquery';
+declare var materialize:any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [MenuService]
+  providers: [MenuSortingService, MenuService, NodesService]
 })
 export class AppComponent {
+  menuSortingTypes = []
   menuItems = []
+  nodes = []
 
-  constructor (private menuService: MenuService) {}
+
+  constructor (private menuSortingService: MenuSortingService,
+               private menuService: MenuService,
+               private nodesService: NodesService) {}
 
   ngOnInit(){
-    // this.menuItems = this.menuService.items;
-    this.menuService.getMenuItems().subscribe( items =>{
-      console.log(items)
-      this.menuItems = items
-    })
-    // this.menuItems = this.menuService.getMenuItems();
+    this.menuSortingService.getMenuSortingTypes().subscribe(types => {
+      this.menuSortingTypes = types;
+    });
+
+    this.menuService.getMenuItems().subscribe( menuItems =>{
+      this.menuItems = menuItems;
+    });
+
+    this.nodesService.getNodes().subscribe( nodes => {
+      this.nodes = nodes;
+    });
   }
 }
