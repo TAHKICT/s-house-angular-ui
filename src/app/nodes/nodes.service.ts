@@ -10,6 +10,7 @@ export class NodesService{
   getNodes(){
     return this.http.get('http://localhost:8282/web-rest-api/user/admin-ui/content/get-nodes/light')
       .map(function (response) {
+        console.log('getNodes');
         return response.json();
       });
   }

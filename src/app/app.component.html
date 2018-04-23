@@ -4,6 +4,7 @@
       <a href="#!" class="brand-logo">Logo</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
+        <app-menu-sorting></app-menu-sorting>
         <app-menu
           *ngFor="let menuItem of menuItems"
           [item]="menuItem"
@@ -23,23 +24,13 @@
     <app-nodes
       *ngFor="let node of nodes"
       [node]="node"
-    >
-
-    </app-nodes>
+    ></app-nodes>
   </form>
 
   <h1>
     Welcome to {{ title }}!
   </h1>
 
-  <!-- Dropdown Trigger -->
-  <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
 
-  <ul id='dropdown1' class='dropdown-content'>
-    <app-menu-sorting
-      *ngFor="let sortingType of menuSortingTypes"
-      [sortingType]="sortingType"
-    ></app-menu-sorting>
-  </ul>
 </div>
 

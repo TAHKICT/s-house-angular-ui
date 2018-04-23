@@ -8,6 +8,9 @@ import {MenuComponent} from './menu/menu.component';
 import {HttpModule} from '@angular/http';
 import {NodesComponent} from './nodes/nodes.component';
 import {MenuSortingComponent} from './menu/menu.sorting.component';
+import {MatSelectModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MenuSortingService} from './menu/menu.sorting.service';
 
 
 @NgModule({
@@ -20,9 +23,11 @@ import {MenuSortingComponent} from './menu/menu.sorting.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    BrowserAnimationsModule,
+    MatSelectModule
   ],
-  providers: [],
+  providers: [MenuSortingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

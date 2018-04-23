@@ -1,1 +1,9 @@
-<li><a href="#!">{{sortingType}}</a></li>
+<mat-form-field (valueChanges)="onSelect()">
+  <mat-select placeholder="Navigation sorted by" >
+    <mat-option
+      (onSelectionChange) = "onSelect($event)"
+      *ngFor="let type of menuSortingTypes" [value]="type">
+      {{ type }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
