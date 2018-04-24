@@ -1,24 +1,18 @@
-<div class="container">
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Logo</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <app-menu-sorting></app-menu-sorting>
-        <app-menu
-          *ngFor="let menuItem of menuItems"
-          [item]="menuItem"
-        ></app-menu>
-      </ul>
-    </div>
-  </nav>
+<nav>
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo">Logo</a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <app-menu-sorting></app-menu-sorting>
+      <app-menu
+        *ngFor="let menuItem of menuItems"
+        [item]="menuItem"
+      ></app-menu>
+    </ul>
+  </div>
+</nav>
 
-  <ul class="sidenav" id="mobile-demo">
-    <app-menu
-      *ngFor="let menuItem of menuItems"
-      [item]="menuItem"
-    ></app-menu>
-  </ul>
+<div class="container">
 
   <form action="#">
     <app-nodes
@@ -26,7 +20,6 @@
       [node]="node"
     ></app-nodes>
   </form>
-
   <h1>
     Welcome to {{ title }}!
   </h1>

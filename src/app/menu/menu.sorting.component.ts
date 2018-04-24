@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {MenuSortingService} from './menu.sorting.service';
+import {MenuService} from './menu.service';
+import {AppComponent} from '../app.component';
 
 @Component({
   selector: 'app-menu-sorting',
@@ -8,7 +10,9 @@ import {MenuSortingService} from './menu.sorting.service';
 export class MenuSortingComponent {
   menuSortingTypes = [];
 
-  constructor(menuSortingService:MenuSortingService) {
+  constructor(private menuSortingService:MenuSortingService,
+              private menuService:MenuService,
+              private appComponent:AppComponent) {
     menuSortingService.getMenuSortingTypes().subscribe(menuSortingTypes => {
       this.menuSortingTypes = menuSortingTypes;
       console.log(menuSortingTypes);
@@ -16,6 +20,9 @@ export class MenuSortingComponent {
   }
 
   onSelect(event){
-    console.log('on select: ' + event.source.selected);
+    if(event.source.selected) {
+      this.menuService.setSortingCriteria(event.source.value);
+      this.appComponent.updateMenuItems();
+    }
   }
 }

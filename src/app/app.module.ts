@@ -11,7 +11,14 @@ import {MenuSortingComponent} from './menu/menu.sorting.component';
 import {MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MenuSortingService} from './menu/menu.sorting.service';
+import {HttpClientModule} from '@angular/common/http';
+import {SetupPageComponent} from './setup-page/setup-page.component';
+import {RouterModule} from '@angular/router';
 
+const routes = [
+  {path: '', component: NodesComponent},
+  {path: 'setup', component: SetupPageComponent}
+];
 
 @NgModule({
   declarations: [
@@ -19,13 +26,16 @@ import {MenuSortingService} from './menu/menu.sorting.service';
     UserComponent,
     MenuSortingComponent,
     MenuComponent,
-    NodesComponent
+    NodesComponent,
+    SetupPageComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     BrowserAnimationsModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [MenuSortingService],
   bootstrap: [AppComponent]

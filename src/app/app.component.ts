@@ -17,12 +17,16 @@ export class AppComponent {
                private nodesService: NodesService) {}
 
   ngOnInit(){
-    this.menuService.getMenuItems().subscribe( menuItems =>{
-      this.menuItems = menuItems;
-    });
+    this.updateMenuItems();
 
     this.nodesService.getNodes().subscribe( nodes => {
       this.nodes = nodes;
     })
+  }
+
+  updateMenuItems(){
+    this.menuService.getMenuItems().subscribe( menuItems =>{
+      this.menuItems = menuItems;
+    });
   }
 }
