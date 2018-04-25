@@ -14,16 +14,7 @@
 
 <div class="container">
 
-  <form action="#">
-    <app-nodes
-      *ngFor="let node of nodes"
-      [node]="node"
-    ></app-nodes>
-  </form>
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-
+  <router-outlet></router-outlet>
 
 </div>
 

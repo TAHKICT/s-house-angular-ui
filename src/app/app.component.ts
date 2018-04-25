@@ -1,30 +1,26 @@
 import { Component } from '@angular/core';
 import {MenuService} from './menu/menu.service';
-import {NodesService} from './nodes/nodes.service';
+import {NodesService} from './nodes-page/nodes.service';
+import {MenuSortingService} from './menu/menu.sorting.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [MenuService, NodesService]
+  providers: [MenuSortingService,MenuService,NodesService]
 })
 export class AppComponent {
   menuItems = []
-  nodes = []
 
-
-  constructor (private menuService: MenuService,
-               private nodesService: NodesService) {}
+  constructor (private menuSortingService: MenuSortingService,
+               private menuService: MenuService){}
 
   ngOnInit(){
-    this.updateMenuItems();
-
-    this.nodesService.getNodes().subscribe( nodes => {
-      this.nodes = nodes;
-    })
+    this.menuSortingService.loadSortingTypes();
+    this.loadMenuItems();
   }
 
-  updateMenuItems(){
+  loadMenuItems(){
     this.menuService.getMenuItems().subscribe( menuItems =>{
       this.menuItems = menuItems;
     });

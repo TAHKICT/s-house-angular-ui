@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {NodesService} from './nodes.service';
 
 @Component({
   selector: 'app-nodes',
@@ -6,6 +7,6 @@ import {Component, Input} from '@angular/core';
 })
 export class NodesComponent {
 
-  @Input() node;
+ @Input() node;
 
 }
