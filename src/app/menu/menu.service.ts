@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
-import 'rxjs/add/operator/map';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {NodesService} from '../nodes-page/nodes.service';
 
 @Injectable()
 export class MenuService{
+  sortingCriteria;
 
-  sortingCriteria = 'type';
-
-  constructor(private httpClient: HttpClient){}
+  constructor(private httpClient: HttpClient,
+              private nodeService: NodesService){
+  }
 
   getMenuItems(){
     let params = new HttpParams().set('sortedBy',this.sortingCriteria);
@@ -19,5 +20,6 @@ export class MenuService{
 
   setSortingCriteria (sortingCriteria){
     this.sortingCriteria = sortingCriteria;
+    this.nodeService.type = sortingCriteria;
   }
 }

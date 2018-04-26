@@ -4,13 +4,16 @@ import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class NodesService{
+  type;
+  name;
 
   constructor(private httpClient: HttpClient){}
 
   getNodes(type, name){
+    console.log('get nodes');
     return this.httpClient.post<any[]>('http://localhost:8282/web-rest-api/user/admin-ui/content/get-nodes', {
-      type: type,
-      name: name,
+      type: this.type,
+      name: this.name,
       activeOnly: true
     });
 

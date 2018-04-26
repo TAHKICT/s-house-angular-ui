@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {SetupPageComponent} from './setup-page/setup-page.component';
 import {RouterModule} from '@angular/router';
 import {MainPageComponent} from './main-page/main-page.component';
+import {MenuService} from './menu/menu.service';
 
 const routes = [
   {path: '', component: MainPageComponent},
@@ -39,7 +40,7 @@ const routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [MenuSortingService],
+  providers: [MenuSortingService, MenuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

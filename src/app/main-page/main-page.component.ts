@@ -9,11 +9,13 @@ import {AppComponent} from '../app.component';
 export class MainPageComponent {
   nodes = []
 
-  constructor (private nodesService: NodesService,
-               private appComponent: AppComponent) {}
+  constructor (private nodesService: NodesService) {}
 
-  ngOnInit(){
-      console.log('MainPageComponent')
-      this.nodesService.getNodes('type', 'light').subscribe( nodes => {this.nodes = nodes;});
+  loadNodes(){
+    console.log('load nodes');
+      this.nodesService.getNodes('type', 'light').subscribe( nodes => {
+        console.log(nodes);
+        this.nodes = nodes;
+      });
   }
 }
