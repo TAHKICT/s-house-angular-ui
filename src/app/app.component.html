@@ -8,6 +8,7 @@
         *ngFor="let menuItem of menuItems"
         [item]="menuItem"
       ></app-menu>
+      <li><a href="#setup" (click)="menuItemClick(item)">Setup</a></li>
     </ul>
   </div>
 </nav>

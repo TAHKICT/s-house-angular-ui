@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {MenuSortingService} from './menu.sorting.service';
 import {MenuService} from './menu.service';
-import {AppComponent} from '../app.component';
 
 
 @Component({
@@ -12,15 +11,14 @@ export class MenuSortingComponent {
   menuSortingTypes = [];
 
   constructor(private menuSortingService:MenuSortingService,
-              private  menuService:MenuService,
-              private  appComponent: AppComponent) {
-    this.menuSortingService.loadSortingTypes().subscribe(types => this.menuSortingTypes = types);
+              private  menuService:MenuService) {
+    this.menuSortingService.getSortingTypes().subscribe(types => this.menuSortingTypes = types);
   }
 
   onSelect(event){
     if(event.source.selected) {
       this.menuService.setSortingCriteria(event.source.value);
-      this.appComponent.loadMenuItems();
+      this.menuSortingService.menuTypeClick();
     }
   }
 }

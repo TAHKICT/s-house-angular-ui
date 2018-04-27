@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NodesService} from '../nodes-page/nodes.service';
-import {AppComponent} from '../app.component';
+import {MenuService} from '../menu/menu.service';
 
 @Component({
   selector: 'app-main-page',
@@ -9,12 +9,19 @@ import {AppComponent} from '../app.component';
 export class MainPageComponent {
   nodes = []
 
-  constructor (private nodesService: NodesService) {}
+  constructor (private nodesService: NodesService,
+               private menuService: MenuService) {}
+
+  ngOnInit(){
+    this.menuService.menuItemClickCalled$.subscribe(
+      () => {
+        this.loadNodes();
+      }
+    );
+  }
 
   loadNodes(){
-    console.log('load nodes');
-      this.nodesService.getNodes('type', 'light').subscribe( nodes => {
-        console.log(nodes);
+      this.nodesService.getNodes().subscribe( nodes => {
         this.nodes = nodes;
       });
   }
