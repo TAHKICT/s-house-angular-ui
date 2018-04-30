@@ -7,14 +7,15 @@ import {Subject} from 'rxjs/Subject';
 export class MenuSortingService{
   // Observable string sources
   private menuTypeClickCallSource = new Subject<any>();
+  private menuTypesLoadedCallSource = new Subject<any>();
 
   // Observable string streams
   menuTypeClickCalled$ = this.menuTypeClickCallSource.asObservable();
+  menuTypesLoadedCalled$ = this.menuTypesLoadedCallSource.asObservable();
 
   // Service message commands
-  menuTypeClick() {
-    this.menuTypeClickCallSource.next();
-  }
+  menuTypeClick() {this.menuTypeClickCallSource.next()}
+  navigationCriteriasLoaded(){this.menuTypesLoadedCallSource.next()}
 
   constructor(private httpClient: HttpClient){}
 

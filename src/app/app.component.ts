@@ -15,11 +15,8 @@ export class AppComponent{
 
   ngOnInit(){
     console.log('AppComponent');
-    this.menuSortingService.menuTypeClickCalled$.subscribe(
-      () => {
-        this.loadMenuItems();
-      }
-    );
+    this.menuSortingService.menuTypeClickCalled$.subscribe(() => this.loadMenuItems());
+    this.menuSortingService.menuTypesLoadedCalled$.subscribe(() => this.loadMenuItems());
   }
 
   loadMenuItems(){

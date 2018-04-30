@@ -11,13 +11,23 @@ export class MenuSortingComponent {
   menuSortingTypes = [];
 
   constructor(private menuSortingService:MenuSortingService,
-              private  menuService:MenuService) {
-    this.menuSortingService.getSortingTypes().subscribe(types => this.menuSortingTypes = types);
+              private  menuService:MenuService) {}
+
+  ngOnInit(){
+    this.menuSortingService.getSortingTypes()
+      .subscribe(types => this.menuSortingTypes = types,
+        () => console.log('getSortingTypes error'),
+        () => {
+        if(this.menuSortingTypes.length != 0) {
+          this.menuService.setNavigationCriteria(this.menuSortingTypes[0]);
+          this.menuSortingService.navigationCriteriasLoaded();
+        }
+      });
   }
 
   onSelect(event){
     if(event.source.selected) {
-      this.menuService.setSortingCriteria(event.source.value);
+      this.menuService.setNavigationCriteria(event.source.value);
       this.menuSortingService.menuTypeClick();
     }
   }

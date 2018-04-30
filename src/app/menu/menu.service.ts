@@ -16,20 +16,19 @@ export class MenuService{
     this.menuItemClickCallSource.next();
   }
 
-
-  sortingCriteria;
+  navigationCriteria;
   constructor(private httpClient: HttpClient,
               private nodeService: NodesService){}
 
   getMenuItems(){
-    let params = new HttpParams().set('sortedBy',this.sortingCriteria);
+    let params = new HttpParams().set('sortedBy',this.navigationCriteria);
     return this.httpClient.get<any[]>('http://localhost:8282/web-rest-api/user/admin-ui/menu/get-items',{
       params:params
     });
   }
 
-  setSortingCriteria (sortingCriteria){
-    this.sortingCriteria = sortingCriteria;
-    this.nodeService.type = sortingCriteria;
+  setNavigationCriteria (navigationCriteria){
+    this.navigationCriteria = navigationCriteria;
+    this.nodeService.type = navigationCriteria;
   }
 }

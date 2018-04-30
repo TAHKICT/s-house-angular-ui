@@ -13,11 +13,15 @@ export class MainPageComponent {
                private menuService: MenuService) {}
 
   ngOnInit(){
+    console.log('MainPageComponent')
     this.menuService.menuItemClickCalled$.subscribe(
       () => {
         this.loadNodes();
       }
     );
+
+    if(this.nodesService.type != null && this.nodesService.name != null)
+      this.loadNodes();
   }
 
   loadNodes(){
