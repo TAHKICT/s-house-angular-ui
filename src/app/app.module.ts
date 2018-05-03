@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
 import {UserComponent} from './user/user.component';
 import {MenuComponent} from './menu/menu.component';
@@ -17,6 +15,21 @@ import {RouterModule} from '@angular/router';
 import {MainPageComponent} from './main-page/main-page.component';
 import {MenuService} from './menu/menu.service';
 import {NodesService} from './nodes-page/nodes.service';
+import {StompConfig, StompService} from '@stomp/ng2-stompjs';
+import * as SockJS from 'sockjs-client';
+
+export function socketProvider() {
+  return new SockJS('http://localhost:8282/s-house-rest-api-web-websocket-registration');
+}
+
+const stompConfig: StompConfig = {
+  url: socketProvider,
+  headers: {},
+  heartbeat_in: 0, // Typical value 0 - disabled
+  heartbeat_out: 20000, // Typical value 20000 - every 20 seconds
+  reconnect_delay: 5000,
+  debug: true
+};
 
 const routes = [
   {path: '', component: MainPageComponent},
@@ -45,6 +58,7 @@ const routes = [
     MenuSortingService,
     MenuService,
     NodesService],
+    StompService,
   bootstrap: [AppComponent]
 })
 export class AppModule { }
