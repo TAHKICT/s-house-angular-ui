@@ -1,9 +1,21 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {HttpClient} from '@angular/common/http';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class NodesService{
+  // Observable string sources
+  private nodeStateChangeCallSource = new Subject<any>();
+
+  // Observable string streams
+  nodeStateChangeCalled$ = this.nodeStateChangeCallSource.asObservable();
+
+  nodeStateChange(nodeId, value){
+    this.nodeStateChangeCallSource.next({nodeId:nodeId, value:value});
+    // console.log('NodesService. nodeStateChange: ' + nodeId + ' | ' + value);
+  }
+
   type;
   name;
 
@@ -15,7 +27,6 @@ export class NodesService{
       name: this.name,
       activeOnly: true
     });
-
   }
 
 }

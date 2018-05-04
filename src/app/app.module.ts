@@ -4,9 +4,9 @@ import { AppComponent } from './app.component';
 import {UserComponent} from './user/user.component';
 import {MenuComponent} from './menu/menu.component';
 import {HttpModule} from '@angular/http';
-import {NodesComponent} from './nodes-page/nodes.component';
+import {NodeComponent} from './nodes-page/nodes.component';
 import {MenuSortingComponent} from './menu/menu.sorting.component';
-import {MatSelectModule} from '@angular/material';
+import {MatSelectModule, MatSlideToggleModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MenuSortingService} from './menu/menu.sorting.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -42,7 +42,7 @@ const routes = [
     UserComponent,
     MenuSortingComponent,
     MenuComponent,
-    NodesComponent,
+    NodeComponent,
     MainPageComponent,
     SetupPageComponent
   ],
@@ -51,14 +51,19 @@ const routes = [
     HttpModule,
     BrowserAnimationsModule,
     MatSelectModule,
+    MatSlideToggleModule,
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
   providers: [
     MenuSortingService,
     MenuService,
-    NodesService],
+    NodesService,
     StompService,
+    {
+      provide: StompConfig,
+      useValue: stompConfig
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

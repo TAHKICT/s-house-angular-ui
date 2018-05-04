@@ -1,33 +1,28 @@
 import {Component, Input} from '@angular/core';
-import {StompService} from '@stomp/ng2-stompjs';
+import {NodesService} from './nodes.service';
 
 
 @Component({
   selector: 'app-nodes',
   templateUrl: './nodes.component.html',
 })
-export class NodesComponent {
+export class NodeComponent {
 
  @Input() node;
 
-  // Subscription status
-  public subscribed: boolean;
+ constructor(private nodeService: NodesService){}
 
- constructor(private _stompService: StompService){}
-
-  public subscribe() {
-    if (this.subscribed) {
-      return;
-    }
-
-    // Stream of messages
-    // this.messages = this._stompService.subscribe('/topic/ng-demo-sub');
-    this.messages = this._stompService.subscribe('/to-user/messages');
-
-    // Subscribe a function to be run on_next message
-    this.subscription = this.messages.subscribe(this.on_next);
-
-    this.subscribed = true;
+ switchEvent(node, event) {
+    // console.log(
+    //   'switched ' + node.id
+    //   + ' ' + node.control.value
+    //   + ' event ' + event);
+   this.nodeService.nodeStateChange(node.id, event.checked);
   }
+
+  isChecked() {
+    return this.node.control.value === 'checked';
+  }
+
 
 }
