@@ -16,15 +16,15 @@ export class NodesService{
     // console.log('NodesService. nodeStateChange: ' + nodeId + ' | ' + value);
   }
 
-  type;
-  name;
+  navigationCiteria;
+  menuItemName;
 
   constructor(private httpClient: HttpClient){}
 
   getNodes(){
     return this.httpClient.post<any[]>('http://localhost:8282/web-rest-api/user/admin-ui/content/get-nodes', {
-      type: this.type,
-      name: this.name,
+      type: this.navigationCiteria,
+      name: this.menuItemName,
       activeOnly: true
     });
   }

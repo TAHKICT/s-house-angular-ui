@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NodesService} from '../nodes-page/nodes.service';
+import {NodesService} from '../node/nodes.service';
 import {MenuService} from '../menu/menu.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Message} from '@stomp/stompjs';
@@ -11,13 +11,20 @@ import {StompService} from '@stomp/ng2-stompjs';
   templateUrl: './main-page.component.html',
 })
 export class MainPageComponent {
-  nodes = []
+  nodes = [];
+  nodesCards = [];
 
   constructor (private nodesService: NodesService,
                private menuService: MenuService,
                private _stompService: StompService) {}
 
   ngOnInit(){
+    this.menuService.menuItemsLoadedCalled$.subscribe(
+      () => {
+        this.loadNodes();
+      }
+    );
+
     this.menuService.menuItemClickCalled$.subscribe(
       () => {
         this.loadNodes();
@@ -30,17 +37,17 @@ export class MainPageComponent {
       }
     )
 
-    if (this.nodesService.type != null && this.nodesService.name != null) {
+    if (this.nodesService.navigationCiteria != null && this.nodesService.menuItemName != null) {
       this.loadNodes();
     }
 
-    //web sockets**********
+    // web sockets**********
     this.subscribed = false;
 
     // Store local reference to Observable
     // for use with template ( | async )
     this.subscribe();
-    //**********************
+    // **********************
   }
 
   loadNodes(){
@@ -49,7 +56,7 @@ export class MainPageComponent {
       });
   }
 
-  //web sockets**********
+  // web sockets **********
   // Stream of messages
   private subscription: Subscription;
   public messages: Observable<Message>;
@@ -84,9 +91,9 @@ export class MainPageComponent {
 
   public sendNodeChangeMessage(nodeId, value) {
     console.log('send');
-    this._stompService.publish('/s-house-rest-api-web-websocket/to-server',
-      `{ nodeId: ${nodeId}, value: ${value}`);
+    let message = (value === true) ? JSON.stringify({nodeId: nodeId, value: 'checked'}) : JSON.stringify({nodeId: nodeId, value: 'unchecked'});
+    this._stompService.publish('/s-house-rest-api-web-websocket/to-server', message);
   }
-  //**********************
+  // -------------------------
 
 }

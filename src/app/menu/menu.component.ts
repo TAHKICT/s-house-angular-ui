@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NodesService} from '../nodes-page/nodes.service';
+import {NodesService} from '../node/nodes.service';
 import {MenuService} from './menu.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class MenuComponent {
               private menuService: MenuService){};
 
   menuItemClick(item){
-    this.nodeService.name = item;
+    this.nodeService.menuItemName = item;
     this.menuService.menuItemClick();
   }
 
