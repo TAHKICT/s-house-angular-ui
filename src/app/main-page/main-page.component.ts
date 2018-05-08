@@ -53,6 +53,8 @@ export class MainPageComponent {
   loadNodes(){
       this.nodesService.getNodes().subscribe( nodes => {
         this.nodes = nodes;
+
+        this.nodesCards = this.nodesService.generateNodesCards(this.nodes);
       });
   }
 

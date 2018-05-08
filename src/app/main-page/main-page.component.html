@@ -1,7 +1,10 @@
 <form action="#">
-  <app-nodes
-    *ngFor="let node of nodes"
-    [node]="node"
-  ></app-nodes>
-  <app-nodes-card></app-nodes-card>
+  <!--<app-nodes-->
+    <!--*ngFor="let node of nodes"-->
+    <!--[node]="node"-->
+  <!--&gt;</app-nodes>-->
+  <app-nodes-card
+    *ngFor="let nodesCard of nodesCards"
+    [nodesCard]="nodesCard"
+  ></app-nodes-card>
 </form>

@@ -6,7 +6,7 @@ import {MenuComponent} from './menu/menu.component';
 import {HttpModule} from '@angular/http';
 import {NodeComponent} from './node/nodes.component';
 import {MenuSortingComponent} from './menu/menu.sorting.component';
-import {MatSelectModule, MatSlideToggleModule} from '@angular/material';
+import {MatCardModule, MatSelectModule, MatSlideToggleModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MenuSortingService} from './menu/menu.sorting.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -17,6 +17,7 @@ import {MenuService} from './menu/menu.service';
 import {NodesService} from './node/nodes.service';
 import {StompConfig, StompService} from '@stomp/ng2-stompjs';
 import * as SockJS from 'sockjs-client';
+import {NodesCardComponent} from './node/nodes-card/nodes-card.component';
 
 export function socketProvider() {
   return new SockJS('http://localhost:8282/s-house-rest-api-web-websocket-registration');
@@ -44,7 +45,8 @@ const routes = [
     MenuComponent,
     NodeComponent,
     MainPageComponent,
-    SetupPageComponent
+    SetupPageComponent,
+    NodesCardComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ const routes = [
     BrowserAnimationsModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatCardModule,
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
