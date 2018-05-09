@@ -4,7 +4,7 @@ import {NodesService} from '../node/nodes.service';
 import {Subject} from 'rxjs/Subject';
 
 @Injectable()
-export class MenuService{
+export class MenuService {
   // Observable string sources
   private menuItemClickCallSource = new Subject<any>();
   private menuItemsLoadedCallSource = new Subject<any>();
@@ -25,12 +25,12 @@ export class MenuService{
 
   private navigationCriteria;
   constructor(private httpClient: HttpClient,
-              private nodeService: NodesService){}
+              private nodeService: NodesService) {}
 
-  getMenuItems(){
-    let params = new HttpParams().set('sortedBy',this.navigationCriteria);
+  getMenuItems() {
+    const params = new HttpParams().set('sortedBy', this.navigationCriteria);
     return this.httpClient.get<any[]>('http://localhost:8282/web-rest-api/user/admin-ui/menu/get-items',{
-      params:params
+      params: params
     });
   }
 

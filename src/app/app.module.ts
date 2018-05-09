@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import {UserComponent} from './user/user.component';
 import {MenuComponent} from './menu/menu.component';
 import {HttpModule} from '@angular/http';
 import {NodeComponent} from './node/nodes.component';
@@ -40,7 +39,6 @@ const routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
     MenuSortingComponent,
     MenuComponent,
     NodeComponent,

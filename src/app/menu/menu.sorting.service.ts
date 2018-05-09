@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs/Subject';
 
 @Injectable()
-export class MenuSortingService{
+export class MenuSortingService {
   // Observable string sources
   private navigationCriteriaClickCallSource = new Subject<any>();
   private navigationCriteriasLoadedCallSource = new Subject<any>();
@@ -17,7 +17,7 @@ export class MenuSortingService{
   menuTypeClick() {this.navigationCriteriaClickCallSource.next()}
   navigationCriteriasLoaded(){this.navigationCriteriasLoadedCallSource.next()}
 
-  constructor(private httpClient: HttpClient){}
+  constructor(private httpClient: HttpClient) {}
 
   getSortingTypes() {
     console.log('getSortingTypes');
