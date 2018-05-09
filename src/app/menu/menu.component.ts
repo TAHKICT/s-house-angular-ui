@@ -13,7 +13,7 @@ export class MenuComponent {
   constructor(private nodeService: NodesService,
               private menuService: MenuService){};
 
-  menuItemClick(item){
+  menuItemClick(item) {
     this.nodeService.menuItemName = item;
     this.menuService.menuItemClick();
   }

@@ -1,6 +1,6 @@
-export class WebSocketMessage{
+export class WebSocketMessage {
 
   nodeId: number;
-  value:string;
+  value: string;
 
 }
