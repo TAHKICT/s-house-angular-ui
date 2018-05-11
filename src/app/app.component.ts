@@ -4,7 +4,7 @@ import {MenuSortingService} from './menu/menu.sorting.service';
 import {NodesService} from './node/nodes.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-shouse',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

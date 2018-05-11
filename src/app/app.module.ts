@@ -17,6 +17,8 @@ import {NodesService} from './node/nodes.service';
 import {StompConfig, StompService} from '@stomp/ng2-stompjs';
 import * as SockJS from 'sockjs-client';
 import {NodesCardComponent} from './node/nodes-card/nodes-card.component';
+import { NbThemeModule } from '@nebular/theme';
+import {RootPageModule} from './pages/root-page/root-page.module';
 
 export function socketProvider() {
   return new SockJS('http://localhost:8282/s-house-rest-api-web-websocket-registration');
@@ -54,7 +56,9 @@ const routes = [
     MatSlideToggleModule,
     MatCardModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NbThemeModule.forRoot({ name: 'cosmic' }),
+    RootPageModule
   ],
   providers: [
     MenuSortingService,
