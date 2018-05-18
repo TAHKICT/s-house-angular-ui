@@ -41,7 +41,9 @@
     "to": "^0.2.9",
     "update": "^0.7.4",
     "zone.js": "^0.8.19",
-    "@nebular/security": "latest"
+    "@nebular/security": "latest",
+    "ngx-echarts": "latest",
+    "@ng-bootstrap/ng-bootstrap": "latest"
   },
   "devDependencies": {
     "@angular/cli": "~1.7.4",

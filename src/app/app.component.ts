@@ -1,33 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {MenuService} from './menu/menu.service';
-import {MenuSortingService} from './menu/menu.sorting.service';
-import {NodesService} from './node/nodes.service';
+import { Component, OnInit } from '@angular/core';
+import { AnalyticsService } from './@core/utils/analytics.service';
 
 @Component({
-  selector: 'app-shouse',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'ngx-app',
+  template: '<router-outlet></router-outlet>',
 })
 export class AppComponent implements OnInit {
-  menuItems = [];
 
-  constructor (private menuSortingService: MenuSortingService,
-               private menuService: MenuService,
-               private nodesService: NodesService) {}
-
-  ngOnInit() {
-    console.log('AppComponent');
-    this.menuSortingService.navigationCriteriaClickCalled$.subscribe(() => this.loadMenuItems());
-    this.menuSortingService.navigationCriteriasLoadedCalled$.subscribe(() => this.loadMenuItems());
+  constructor(private analytics: AnalyticsService) {
   }
 
-  loadMenuItems() {
-    this.menuService.getMenuItems().subscribe( menuItems => {
-      this.menuItems = menuItems;
-      if (this.menuItems.length !== 0) {
-        this.nodesService.menuItemName = this.menuItems[0];
-        this.menuService.menuItemsLoaded();
-      }
-    });
+  ngOnInit(): void {
+    this.analytics.trackPageViews();
   }
 }
